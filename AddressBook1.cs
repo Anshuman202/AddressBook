@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace AddressBookProgram
 {
     class AddressBook
@@ -41,12 +42,13 @@ namespace AddressBookProgram
             var Zip = Console.ReadLine();
 
             Console.WriteLine("Enter PhoneNum:");
-            var PhoneNumber = Console.ReadLine();
+            var PhoneNum = Console.ReadLine();
 
             Console.WriteLine("Enter Email:");
             var Email = Console.ReadLine();
+            Console.WriteLine();
 
-            Contact contact = new Contact(FirstName, LastName, Address, City, State, Zip, PhoneNumber, Email);
+            Contact contact = new Contact(FirstName, LastName, Address, City, State, Zip, PhoneNum, Email);
             AddPersonToList(contact);
 
 
@@ -56,7 +58,6 @@ namespace AddressBookProgram
         {
             foreach (var contact in AddressBookList)
             {
-                Console.WriteLine("\n");
                 Console.WriteLine("FirstName: {0}, LastName: {1}, Adress: {2}, City : {3}, State: {4}, Zip: {5}, PhoneNum: {6}, Email: {7}", contact.FirstName, contact.LastName, contact.Address, contact.City, contact.State, contact.Zip, contact.PhoneNumber, contact.Email);
             }
             Console.ReadLine();
@@ -140,7 +141,7 @@ namespace AddressBookProgram
             }
             else if (userOption == "7")
             {
-                Console.WriteLine("Enter a new PhoneNum");
+                Console.WriteLine("Enter a new PhoneNumber");
                 newValue = Console.ReadLine();
 
                 foreach (var contact in personsWithMatchingFirstName)
@@ -158,6 +159,12 @@ namespace AddressBookProgram
                     contact.Email = newValue;
                 }
             }
+        }
+        public void DeleteContact()
+        {
+            Console.WriteLine("Enter firstName of the user you want to remove");
+            var firstName = Console.ReadLine();
+            AddressBookList.RemoveAll(item => item.FirstName == firstName);
         }
     }
 }
